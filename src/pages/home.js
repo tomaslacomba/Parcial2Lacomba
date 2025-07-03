@@ -1,4 +1,3 @@
-// src/pages/home.js
 import Swal from 'sweetalert2';
 import { fetchBreeds } from '../utils/api.js';
 import { createBreedCard } from '../components/breedCard.js';
