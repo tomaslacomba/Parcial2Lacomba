@@ -1,17 +1,16 @@
-// src/components/breedCard.js
 import Swal from 'sweetalert2';
 
 export function createBreedCard(breed) {
   const weight = breed.weight?.metric || 'No disponible';
-  const image = breed.image?.url || '/public/dog-placeholder.jpg';
+  const image = breed.image?.url || '/public/dog-placeholder.jpg'; // Imagen para tarjeta
   const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
   const isFavorite = favorites.some(fav => fav.id === breed.id);
   const buttonText = isFavorite ? 'Quitar de Favoritos' : 'Agregar a Favoritos';
   const buttonAction = isFavorite ? `removeFromFavorites(${breed.id}, '${breed.name}')` : `addToFavorites(${breed.id}, '${breed.name}')`;
-  // Crea tarjeta de raza con botón dinámico para agregar/quitar favoritos
+  // Crea tarjeta de raza con botón dinámico para favoritos
   return `
     <div class="breed-card">
-      <img src="${image}" alt="${breed.name}" />
+      <img src="${image}" alt="${breed.name}" onerror="this.src='/public/dog-placeholder.jpg';" />
       <h3>${breed.name}</h3>
       <p>Peso: ${weight} kg</p>
       <button onclick="${buttonAction}">${buttonText}</button>
@@ -31,7 +30,7 @@ window.addToFavorites = (id, name) => {
       icon: 'success',
       timer: 1500
     });
-    // Dispara evento para actualizar lista de razas
+    // Dispara evento para actualizar lista
     document.dispatchEvent(new Event('favoritesUpdated'));
   } else {
     Swal.fire({
@@ -54,7 +53,7 @@ window.removeFromFavorites = (id, name) => {
       icon: 'success',
       timer: 1500
     });
-    // Dispara evento para actualizar lista de razas
+    //evento para actualizar lista
     document.dispatchEvent(new Event('favoritesUpdated'));
   }
 };
@@ -68,12 +67,11 @@ window.showBreedModal = async (id) => {
     const response = await fetch(`https://api.thedogapi.com/v1/breeds/${id}`, { method: 'GET', headers });
     if (!response.ok) throw new Error(`Error ${response.status}`);
     const breed = await response.json();
-    console.log('Modal - Raza:', breed);
-    // Muestra modal con detalles de la raza
+    console.log('Modal - Raza:', breed); // muestra datos de la raza
+    
     Swal.fire({
       title: breed.name,
       html: `
-        <img src="${breed.image?.url || '/public/dog-placeholder.jpg'}" style="max-width: 100%; height: 200px; object-fit: cover;" />
         <p><strong>Temperamento:</strong> ${breed.temperament || 'No disponible'}</p>
         <p><strong>Peso:</strong> ${breed.weight?.metric || 'No disponible'} kg</p>
         <p><strong>Altura:</strong> ${breed.height?.metric || 'No disponible'} cm</p>
@@ -84,7 +82,7 @@ window.showBreedModal = async (id) => {
       confirmButtonColor: '#4CAF50'
     });
   } catch (error) {
-    console.error('Error showBreedModal:', error);
+    console.error('Error showBreedModal:', error); // muestra error
     Swal.fire({
       title: 'Error',
       text: 'No se pudieron cargar los detalles.',
