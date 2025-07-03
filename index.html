@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informacion de Razas de Perros</title>
+  <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+      <header>
+        <div class="header-container">
+            <img src="./img/loguito.jpeg" alt="Logo Perros" class="logo">
+            <h1>Explorador de Razas de Perritos</h1>
+        </div>
+        <div class="store-presentation">
+            <p><strong>Aqui podras explorar e informarte sobre las razas de perros del mundo, desde su peso y altura hasta su origen y mucho mas!</strong></p>
+        </div>
+    </header>
+  <div id="navbar"></div>
+  <main>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Buscar por nombre de raza..." />
+      <select id="filterTemperament">
+        <option value="">Filtrar por temperamento</option>
+      </select>
+      <select id="sortBreeds">
+        <option value="">Ordenar por...</option>
+        <option value="name-asc">Nombre (A-Z)</option>
+        <option value="name-desc">Nombre (Z-A)</option>
+        <option value="weight-asc">Peso (Menor a Mayor)</option>
+        <option value="weight-desc">Peso (Mayor a Menor)</option>
+      </select>
+    </div>
+    <div id="breedList" class="breed-container"></div>
+    <div id="loading" class="loading">Cargando...</div>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+
+    <footer>
+        <div class="container">
+            <div class="titulo">
+                <p>© 2025 Pagina de Perros. Todos los derechos reservados.</p>
+            </div>
+            <div class="grid"></div>
+            <div class="iconos">
+                <a href="https://www.facebook.com/" target="_blank"><img src="./img/facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/tomi_lacomba/" target="_blank"><img src="./img/instagram.png" alt="Instagram"></a>
+                <a href="https://www.linkedin.com/in/tom%C3%A1s-lacomba-182401304/" target="_blank"><img src="./img/linkedin.png" alt="Linkedin"></a>
+                <a href="https://github.com/tomaslacomba" target="_blank"><img src="./img/github.png" alt="github"></a>
+                <a href="tomilacomba.13@gmail.com" target="_blank"><img src="./img/gmail.png" alt="email"></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
